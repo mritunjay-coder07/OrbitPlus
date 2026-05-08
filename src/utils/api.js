@@ -1,6 +1,6 @@
-const PROXY = 'https://corsproxy.io/?';
-const ISS_URL = `${PROXY}${encodeURIComponent('http://api.open-notify.org/iss-now.json')}`;
-const ASTROS_URL = `${PROXY}${encodeURIComponent('http://api.open-notify.org/astros.json')}`;
+const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const ISS_URL = isDev ? 'http://api.open-notify.org/iss-now.json' : '/api/iss';
+const ASTROS_URL = isDev ? 'http://api.open-notify.org/astros.json' : '/api/astros';
 
 export const fetchISSNow = async () => {
   const response = await fetch(ISS_URL);
